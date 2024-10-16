@@ -18,6 +18,4 @@ router.get("/usuarios/favoritos", controllerUsuario.Favoritos);
 router.post("/usuarios/login", controllerUsuario.Login);
 router.post("/usuarios", controllerUsuario.Inserir);
 
-
-
 export default router;
