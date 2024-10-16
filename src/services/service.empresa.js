@@ -2,7 +2,7 @@ import repositoryEmpresa from "../repositories/repository.empresa.js";
 
 async function Destaques() {    
 
-    const empresa = await repositoryEmpresa.Listar();
+    const empresa = await repositoryEmpresa.Destaques();
 
     return empresa;
 }    
