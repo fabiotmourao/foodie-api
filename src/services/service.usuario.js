@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import * as helpers from "../helpers/helpers.js";
 import * as usuarioValidator from '../validators/usuarioValidator.js';
 import repositoryUsuario from "../repositories/repository.usuario.js";
