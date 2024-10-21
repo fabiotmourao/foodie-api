@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "43cf8789-73c0-417e-88f1-b729f10389c2",
+		"name": "Pedidos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37631971"
+	},
+	"item": [
+		{
+			"name": "Listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3001/pedidos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3001/pedido/2"
+			},
+			"response": []
+		}
+	]
+}

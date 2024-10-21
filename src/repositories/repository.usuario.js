@@ -41,6 +41,59 @@ async function Inserir(nome, email, senha, endereco, complemento, bairro, cidade
     }
 }
 
+async function ListarByEmail(email) {
 
+    const sql = `select 
+        id, 
+        nome, 
+        email, 
+        senha, 
+        endereco, 
+        complemento, 
+        bairro, 
+        cidade, 
+        uf, 
+        cep,
+        created_at,
+        updated_at 
+            from 
+        usuario  
+        where email = ?`;
 
-export default { Favoritos, Inserir };
+    const usuario = await execute(sql, [email]);
+
+    if (usuario.length == 0) {
+        return [];
+    }else {
+        return usuario[0];
+    }   
+}
+
+async function ListarById(id) {
+
+    const sql = `select 
+        id, 
+        nome, 
+        email, 
+        endereco, 
+        complemento, 
+        bairro, 
+        cidade, 
+        uf, 
+        cep,
+        created_at,
+        updated_at 
+            from 
+        usuario  
+        where id = ?`;
+
+    const usuario = await execute(sql, [id]);
+
+    if (usuario.length == 0) {
+        return [];
+    }else {
+        return usuario[0];
+    }    
+}
+
+export default { Favoritos, Inserir, ListarByEmail, ListarById };

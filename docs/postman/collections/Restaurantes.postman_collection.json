@@ -1,0 +1,19 @@
+{
+	"info": {
+		"_postman_id": "a4100dd9-3c71-49ec-9cfa-2edd6e5d2c81",
+		"name": "Restaurantes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37631971"
+	},
+	"item": [
+		{
+			"name": "Lista de restaurantes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3001/restaurantes"
+			},
+			"response": []
+		}
+	]
+}

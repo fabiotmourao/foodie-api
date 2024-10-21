@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "b2675c64-c29c-46a1-9d94-dc9dcf580c6f",
+		"name": "Usuários",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37631971"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const token = pm.globals.get(\"authToken\");",
+							"pm.request.headers.add({key: \"Authorization\", value: \"Bearer \" + token});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"pm.environment.set(\"authToken\", jsonData.token);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3001/usuarios/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Perfil",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const token = pm.globals.get(\"authToken\");",
+							"pm.request.headers.add({key: \"Authorization\", value: \"Bearer \" + token});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"pm.environment.set(\"authToken\", jsonData.token);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTcyOTQ3MDU1NCwiZXhwIjoxNzMwNDcwNTUzfQ.pptIzDMwUass80Bn_MGRtDjsDm0KJQ5C1kz1J0CNrl0"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3001/usuarios/perfil"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Conta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJpYXQiOjE3MjkxMjgxMjksImV4cCI6MTczMDEyODEyOH0.ep_u4RW8olr7HT1RlExZvSSfvYBZzmsbBNxK-z0abx8"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Fabio tesde 2\",\n    \"email\": \"fabiodsadasd@teste.com\",\n    \"senha\": \"123456\",\n    \"endereco\": \"Rua auxliadora de suporte\",\n    \"complemento\": \"casa 3\",\n    \"bairro\": \"São Joaquim\",\n    \"cidade\": \"São Paulo\",\n    \"uf\": \"SP\",\n    \"cep\": \"07860300\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3001/usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar favoritos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3001/usuarios/favoritos"
+			},
+			"response": []
+		}
+	]
+}

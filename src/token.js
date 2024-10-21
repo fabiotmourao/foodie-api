@@ -25,7 +25,7 @@ function VerifyJWT(req, res, next) {
         if (error) {
             return res.status(401).json({ error: "Token inválido" });
         }
-        req.userId = decoded.id;
+        req.id = decoded.id;
         return next();
     });
 }

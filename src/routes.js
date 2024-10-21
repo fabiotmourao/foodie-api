@@ -34,5 +34,7 @@ router.get("/pedidos", controllerPedido.Listar);
 router.get("/pedido/:id", controllerPedido.ListarId);
 
 router.get("/usuarios/favoritos", controllerUsuario.Favoritos);
+router.get("/usuarios/perfil", controllerUsuario.Perfil);
+
 
 export default router;
