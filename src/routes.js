@@ -8,17 +8,6 @@ import jwt from "./token.js";
 
 const router = Router();
 
-// router.get("/categorias", jwt.VerifyJWT, controllerCategoria.Listar);
-// router.get("/banners",  jwt.VerifyJWT, controllerBanner.Listar);
-// router.get("/empresas/destaques",  jwt.VerifyJWT, controllerEmpresa.Destaques);
-
-// router.get("/pedidos",  jwt.VerifyJWT, controllerPedido.Listar);
-// router.get("/pedido/:id",  jwt.VerifyJWT, controllerPedido.ListarId);
-
-// router.get("/usuarios/favoritos",  jwt.VerifyJWT, controllerUsuario.Favoritos);
-// router.post("/usuarios/login", controllerUsuario.Login);
-// router.post("/usuarios", controllerUsuario.Inserir);
-
 // Rotas públicas (não precisam de autenticação)
 router.post("/usuarios/login", controllerUsuario.Login);
 router.post("/usuarios", controllerUsuario.Inserir);
@@ -26,15 +15,25 @@ router.post("/usuarios", controllerUsuario.Inserir);
 // Rotas protegidas (precisam de autenticação)
 router.use(jwt.VerifyJWT); 
 
+// Categorias
 router.get("/categorias", controllerCategoria.Listar);
-router.get("/banners", controllerBanner.Listar);
-router.get("/empresas/destaques", controllerEmpresa.Destaques);
 
+// Banners
+router.get("/banners", controllerBanner.Listar);
+
+// Emresas
+router.get("/empresas/destaques", controllerEmpresa.Destaques);
+router.get("/empresas", controllerEmpresa.Listar);
+router.post("/empresas/:id/favoritos", controllerEmpresa.Favoritar);
+router.delete("/empresas/:id/favoritos", controllerEmpresa.Desfavoritar);
+router.get("/empresas/:id/cardapio", controllerEmpresa.Cardapio);
+
+// Pedidos
 router.get("/pedidos", controllerPedido.Listar);
 router.get("/pedido/:id", controllerPedido.ListarId);
 
+// Usuários
 router.get("/usuarios/favoritos", controllerUsuario.Favoritos);
 router.get("/usuarios/perfil", controllerUsuario.Perfil);
-
 
 export default router;
