@@ -56,4 +56,15 @@ async function Cardapio(req, res) {
     }
 }
 
-export default { Destaques, Listar, Favoritar, Desfavoritar, Cardapio };
+async function ListarProdutoId(req, res) {
+    try {
+        const id = req.params.id;
+        const id_produto = req.params.id_produto;
+        const produto = await serviceEmpresa.ListarProdutoId(id, id_produto);
+        res.status(200).json(produto);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+
+export default { Destaques, Listar, Favoritar, Desfavoritar, Cardapio, ListarProdutoId };

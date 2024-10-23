@@ -25,6 +25,11 @@ async function Desfavoritar(id_usuario, id_empresa) {
 async function Cardapio(id_usuario, id_empresa) {
     const cardapio = await repositoryEmpresa.Cardapio(id_usuario, id_empresa);
     return cardapio;
+} 
+
+async function ListarProdutoId(id, id_produto) {
+    const empresa = await repositoryEmpresa.ListarProdutoId(id, id_produto);
+    return empresa;
 }   
 
-export default { Destaques, Listar, Favoritar, Desfavoritar, Cardapio };
+export default { Destaques, Listar, Favoritar, Desfavoritar, Cardapio, ListarProdutoId };

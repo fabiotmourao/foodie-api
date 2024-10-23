@@ -96,4 +96,36 @@ async function ListarById(id) {
     }    
 }
 
-export default { Favoritos, Inserir, ListarByEmail, ListarById };
+async function Editar(id, nome, email, senha, endereco, complemento, bairro, cidade, uf, cep) {
+    try {
+        const sql = `
+            update usuario set
+                nome = ?,
+                email = ?,
+                senha = ?,
+                endereco = ?,
+                complemento = ?,
+                bairro = ?,
+                cidade = ?,
+                uf = ?,
+                cep = ?,
+                updated_at = CURRENT_TIMESTAMP
+            where id = ?
+        `;
+
+        // Atualizar o usuário
+        await execute(sql, [nome, email, senha, endereco, complemento, bairro, cidade, uf, cep, id]);
+
+        // Consultar o usuário atualizado e retornar os dados
+        const sqlGetUpdatedUser = `SELECT * FROM usuario WHERE id = ?`;
+        const usuarioAtualizado = await execute(sqlGetUpdatedUser, [id]);
+
+        return usuarioAtualizado[0];  
+        
+    } catch (error) {
+        console.error("Erro ao editar usuário:", error);
+        throw new Error("Erro ao editar os dados do usuário.");
+    }
+}
+
+export default { Favoritos, Inserir, ListarByEmail, ListarById, Editar };

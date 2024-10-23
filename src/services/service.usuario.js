@@ -62,4 +62,22 @@ async function Perfil(id) {
     return usuario;
 }
 
-export default { Favoritos, Inserir, Login, Perfil };
+async function Editar(id, nome, email, senha, endereco, complemento, bairro, cidade, uf, cep) {
+
+    usuarioValidator.validarNome(nome);
+    usuarioValidator.validarEmail(email);
+    usuarioValidator.validarSenha(senha);
+    usuarioValidator.validarEndereco(endereco);
+    usuarioValidator.validarBairro(bairro);
+    usuarioValidator.validarCidade(cidade);
+    usuarioValidator.validarUF(uf);
+    usuarioValidator.validarCEP(cep);
+
+    const hashSenha = await helpers.hashSenha(senha);
+
+    const usuario = await repositoryUsuario.Editar(id, nome, email, hashSenha, endereco, complemento, bairro, cidade, uf, cep);
+
+    return usuario;
+}
+
+export default { Favoritos, Inserir, Login, Perfil, Editar };

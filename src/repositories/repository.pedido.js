@@ -34,4 +34,43 @@ async function ListarId(id) {
     return pedido[0];
 }
 
-export default { Listar, ListarId };
+async function Inserir(id_usuario, dados) {
+    let sql = `insert into pedido (
+            id_usuario, 
+            id_empresa, 
+            vl_subtotal, 
+            vl_taxa_entrega, 
+            vl_total,
+            status,
+            created_at,
+            updated_at
+        ) values (
+            ?, ?, ?, ?, ?, 'P', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+        )`;
+
+    const result = await execute(sql, [id_usuario, dados.id_empresa, dados.vl_subtotal, dados.vl_taxa_entrega, dados.vl_total], 'run');
+
+    const pedido = { id: result.lastID };
+
+    dados.itens.forEach(async item => {
+        sql = `insert into pedido_item (
+            id_pedido, 
+            id_produto, 
+            obs,
+            qtd,
+            vl_unitario, 
+            vl_total,
+            created_at,
+            updated_at
+        ) values (
+            ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+        )`;
+        await execute(sql, [pedido.id, item.id_produto, item.obs, item.qtd, item.vl_unitario, item.vl_total], 'run');
+    });
+
+    return pedido;
+
+}
+
+
+export default { Listar, ListarId, Inserir };

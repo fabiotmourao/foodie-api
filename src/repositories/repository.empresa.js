@@ -87,4 +87,15 @@ async function Cardapio(id_usuario, id_empresa) {
     return retorno;
 }
 
-export default { Destaques, Listar, Favoritar, Desfavoritar, Cardapio };
+async function ListarProdutoId(id_produto, id) {    
+
+    const sql = `select *
+    from produto p
+    where  p.id_empresa = ? and p.id = ?`;  
+
+    const produto = await execute(sql, [id_produto, id]);
+
+    return produto[0];
+}
+
+export default { Destaques, Listar, Favoritar, Desfavoritar, Cardapio, ListarProdutoId };

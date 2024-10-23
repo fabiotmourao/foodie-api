@@ -27,13 +27,17 @@ router.get("/empresas", controllerEmpresa.Listar);
 router.post("/empresas/:id/favoritos", controllerEmpresa.Favoritar);
 router.delete("/empresas/:id/favoritos", controllerEmpresa.Desfavoritar);
 router.get("/empresas/:id/cardapio", controllerEmpresa.Cardapio);
+router.get("/empresas/:id/produtos/:id_produto", controllerEmpresa.ListarProdutoId);
+
 
 // Pedidos
 router.get("/pedidos", controllerPedido.Listar);
 router.get("/pedido/:id", controllerPedido.ListarId);
+router.post("/pedidos", controllerPedido.Inserir);
 
 // Usuários
 router.get("/usuarios/favoritos", controllerUsuario.Favoritos);
 router.get("/usuarios/perfil", controllerUsuario.Perfil);
+router.post("/usuarios/:id/editar", controllerUsuario.Editar);
 
 export default router;

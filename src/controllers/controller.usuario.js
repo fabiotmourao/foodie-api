@@ -46,4 +46,15 @@ async function Perfil(req, res) {
     }
 }
 
-export default { Favoritos, Login, Inserir, Perfil };   
+async function Editar(req, res) {
+    try {
+        const id = req.params.id;
+        const { nome, email, senha, endereco, complemento, bairro, cidade, uf, cep } = req.body;
+        const usuario = await serviceUsuario.Editar(id, nome, email, senha, endereco, complemento, bairro, cidade, uf, cep);
+        res.status(200).json(usuario);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+
+export default { Favoritos, Login, Inserir, Perfil, Editar };   
